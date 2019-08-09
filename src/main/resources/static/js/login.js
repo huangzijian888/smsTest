@@ -117,7 +117,7 @@ $(function () {
             $('.num2-err').removeClass('hide').find("em").text('请输入手机号');
             return false;
         }
-        var param = /^1[34578]\d{9}$/;
+        var param = /^1[345789]\d{9}$/;
         if (!param.test(phone)) {
             // globalTip({'msg':'手机号不合法，请重新输入','setTime':3});
             $('.num2-err').removeClass('hide');
@@ -220,7 +220,8 @@ $(function () {
                     return false;
                 }
             });
-        } else {
+        }
+        else {
             $(".log-btn").click(function () {
                 // var type = 'phone';
                 var phone = $.trim($('#num2').val());
@@ -235,7 +236,7 @@ $(function () {
                         success: function (data) {
                             if (data.code == '0') {
                                 // globalTip({'msg':'登录成功!','setTime':3,'jump':true,'URL':'http://www.ui.cn'});
-                                globalTip(data.msg);
+                                $(window).attr('location','/hello');
                             } else if (data.code == '1') {
                                 $(".log-btn").off('click').addClass("off");
                                 $('.num2-err').removeClass('hide').text(data.msg);
@@ -250,7 +251,8 @@ $(function () {
 
                         }
                     });
-                } else {
+                }
+                else {
                     $(".log-btn").off('click').addClass("off");
                     // $('.tel-warn').removeClass('hide').text('登录失败');
                     return false;
@@ -271,7 +273,7 @@ $(function () {
         var phone = $.trim($('#num2').val());
         if (checkPhone(phone)) {
             $.ajax({
-                url: '/getcode',
+                url: '/getCode',
                 type: 'post',
                 dataType: 'json',
                 async: true,
